@@ -1,0 +1,10 @@
+- name: Create .ssh
+  ansible.builtin.file:
+    path: "{{ ORIN_USER_HOME }}/.ssh"
+    state: directory
+    mode: '0755'
+- name: Create projects
+  ansible.builtin.file:
+    path: "{{ ORIN_USER_HOME }}/projects"
+    state: directory
+    mode: '0750'

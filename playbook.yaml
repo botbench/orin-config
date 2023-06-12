@@ -1,0 +1,17 @@
+- hosts: all
+  user: "{{ ORIN_USER }}"
+  vars:
+    NODEJS_VERSION: "18"
+    ORIN_USER: "xander"
+    ORIN_USER_HOME: "/home/{{ ORIN_USER }}"
+  tasks:
+    - import_tasks: basic-packages.yaml
+    - import_tasks: setup-orin-user.yaml
+    - import_tasks: create-folders.yaml
+    - import_tasks: install-node.yaml
+    - import_tasks: install-oh-my-zsh.yaml
+    - import_tasks: install-ros.yaml
+    - import_tasks: install-rust.yaml
+    - import_tasks: install-tmux.yaml
+
+#        - install-neovim.yaml

@@ -1,0 +1,25 @@
+- block:
+    - name: Check if cargo has been installed
+      ansible.builtin.stat:
+        path: "{{ ORIN_USER_HOME }}/.cargo/env"
+        get_md5: no
+      register: cargo_installed
+    - block:
+        - name: Download Installer
+          get_url:
+            url: https://sh.rustup.rs
+            dest: /tmp/sh.rustup.rs
+            mode: '0755'
+            force: 'yes'
+        - name: install rust/cargo
+          shell: /tmp/sh.rustup.rs -y
+      when: cargo_installed.stat.exists == false
+    - name: Build and install lsd
+      ansible.builtin.shell:
+        cmd: ". {{ ORIN_USER_HOME }}/.cargo/env && cargo install lsd"
+        creates: "{{ ORIN_USER_HOME }}/.cargo/bin/lsd"
+    - name: Build and install zoxide
+      ansible.builtin.shell:
+        cmd: ". {{ ORIN_USER_HOME }}/.cargo/env && cargo install zoxide"
+        creates: "{{ ORIN_USER_HOME }}/.cargo/bin/zoxide"
+  become: yes

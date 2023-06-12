@@ -1,0 +1,28 @@
+- name: tmux
+  apt:
+    pkg:
+      - tmux
+  become: yes
+- name: Install tmux plugins and configs
+  block:
+    - name: Create tmux .config folder
+      become: no
+      ansible.builtin.file:
+        path: "{{ ORIN_USER_HOME }}/.config/tmux"
+        state: directory
+        mode: '0750'
+    - name: Create tmux plugin folder
+      become: no
+      ansible.builtin.file:
+        path: "{{ ORIN_USER_HOME }}/.config/tmux/plugins"
+        state: directory
+        mode: '0750'
+    - name: Install plugin repos
+      git:
+        repo: "{{ item }}"
+        dest: "{{ ORIN_USER_HOME }}/.config/tmux/plugins/{{ item | split('/') | last }}"
+      loop:
+        - https://git::@github.com/dreamsofcode-io/catppuccin-tmux
+        - https://git::@github.com/tmux-plugins/tmux-sensible
+        - https://git::@github.com/tmux-plugins/tmux-yank
+        - https://git::@github.com/tmux-plugins/tpm

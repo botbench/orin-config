@@ -1,0 +1,17 @@
+- block:
+    - name: Add ROS repo and key, and then install ROS desktop FULL
+      block:
+        - name: ROS repo key
+          ansible.builtin.get_url:
+            url: https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc
+            dest: /etc/apt/trusted.gpg.d/ros.asc
+        - name: Add ROS repo with reference to key
+          ansible.builtin.apt_repository:
+            repo: "deb [signed-by=/etc/apt/trusted.gpg.d/ros.asc] http://packages.ros.org/ros/ubuntu {{ ansible_distribution_release }} main"
+            state: present
+            filename: ros-latest.repo
+        - name: Install ROS desktop FULL
+          apt:
+            name: ros-noetic-desktop-full
+            update_cache: yes
+  become: yes

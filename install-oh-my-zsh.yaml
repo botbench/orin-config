@@ -1,0 +1,23 @@
+- name: Install Oh My Zsh repo
+  git:
+    repo: https://github.com/ohmyzsh/ohmyzsh.git
+    dest: "{{ ORIN_USER_HOME }}/.oh-my-zsh"
+- name: Install plugins
+  git:
+    repo: "{{ item }}"
+    dest: "{{ ORIN_USER_HOME }}/.oh-my-zsh/plugins/{{ item | split('/') | last }}"
+  loop:
+    - https://github.com/zsh-users/zsh-autosuggestions
+    - https://github.com/zsh-users/zsh-syntax-highlighting
+- name: Copy zsh config file
+  copy:
+    src: files/zshrc-config
+    dest: "{{ ORIN_USER_HOME }}/.zshrc"
+- name: Install Power10K theme
+  git:
+    repo: https://github.com/romkatv/powerlevel10k
+    dest: "{{ ORIN_USER_HOME }}/.oh-my-zsh/themes/powerlevel10k"
+- name: Copy Power10K config file
+  copy:
+    src: files/p10k-config
+    dest: "{{ ORIN_USER_HOME }}/.p10k.zsh"

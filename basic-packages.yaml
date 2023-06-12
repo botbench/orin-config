@@ -1,0 +1,25 @@
+- block:
+    - name: Run system update and upgrade
+      apt:
+        upgrade: dist
+        update_cache: yes
+    - name: Install basic packages
+      ansible.builtin.apt:
+        pkg:
+          - vim
+          - git
+          - curl
+          - wget
+          - tmux
+          - python3-pip
+          - nvidia-jetpack
+          - bat
+    - name: Check if a reboot is required.
+      ansible.builtin.stat:
+        path: /var/run/reboot-required
+        get_md5: no
+      register: reboot_required_file
+    - name: Reboot the server (if required).
+      ansible.builtin.reboot:
+      when: reboot_required_file.stat.exists == true
+  become: yes

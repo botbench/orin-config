@@ -1,0 +1,20 @@
+- block:
+    - name: Install zsh
+      apt:
+        name: zsh
+    - name: Add orin user to additional groups
+      user:
+        name: "{{ ORIN_USER }}"
+        groups: "{{ item }}"
+        append: yes
+      loop:
+        - dialout
+        - docker
+        - sudo
+        - tty
+      become: yes
+    - name: Set zsh as default shell for orin user
+      user:
+        name: "{{ ORIN_USER }}"
+        shell: /usr/bin/zsh
+  become: yes
