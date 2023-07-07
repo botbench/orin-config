@@ -13,5 +13,8 @@
         - name: Install ROS desktop FULL
           apt:
             name: ros-noetic-desktop-full
-            update_cache: yes
+        - name: Install additional ROS packages
+          ansible.builtin.apt:
+            pkg:
+              - ros-noetic-joy
   become: yes
