@@ -20,7 +20,8 @@ if [[ $TERM == "screen" ]]; then
   export TERM="xterm-256color"
 fi
 
-[ "${TERM_PROGRAM}" != "vscode" ] && [ -z "${TMUX}" ] && ( tmux attach -d -t jethexa || tmux new -s jethexa ) || true
+HOSTNAME=$(hostname)
+[ "${TERM_PROGRAM}" != "vscode" ] && [ -z "${TMUX}" ] && ( tmux attach -d -t ${HOSTNAME} || tmux new -s ${HOSTNAME} ) || true
 
 # Setup the pyenv stuff
 #export PYENV_ROOT="$HOME/.pyenv"
@@ -131,6 +132,13 @@ alias cd='z'
 alias cat="batcat -p"
 
 export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+
+# Cuda and OpenCV related
+export PATH=/usr/local/cuda-11.4/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-11.4/lib64:$LD_LIBRARY_PATH
+. "$HOME/.cargo/env"
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+export PYTHONPATH=/usr/local/lib/python3.8/site-packages/:$PYTHONPATH
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
