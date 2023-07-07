@@ -1,3 +1,5 @@
-all:
-  hosts:
-    orin
+[desktops]
+orinnx
+
+[robots]
+orin
