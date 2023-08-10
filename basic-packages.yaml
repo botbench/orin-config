@@ -6,7 +6,6 @@
     - name: Install basic packages
       ansible.builtin.apt:
         pkg:
-          - vim
           - git
           - curl
           - wget
@@ -14,6 +13,9 @@
           - python3-pip
           - nvidia-jetpack
           - bat
+          - python3-selinux
+          - selinux-utils
+          - selinux-policy-default
     - name: Disable SELinux
       ansible.posix.selinux:
         state: disabled

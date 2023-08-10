@@ -10,7 +10,8 @@
     - import_tasks: create-folders.yaml
     - import_tasks: install-node.yaml
     - import_tasks: install-oh-my-zsh.yaml
-      #    - import_tasks: install-ros.yaml
+    - import_tasks: install-ros.yaml
     - import_tasks: install-rust.yaml
     - import_tasks: install-tmux.yaml
     - import_tasks: install-neovim.yaml
+    - import_tasks: install-jtop.yaml

@@ -1,0 +1,4 @@
+- name: Install Jetson Stats (jtop)
+  ansible.builtin.pip:
+    name: jetson-stats
+  become: True

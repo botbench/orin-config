@@ -1,21 +1,21 @@
 # These two additional packages are required for snap to be able to run without 
 # warnings
-- name: Install snapd, selinux-utils, and default policies
+- name: Install snapd, squashfuse, and fuse
   apt:
     pkg:
       - snapd
-      - selinux-utils
-      - selinux-policy-default
       - fuse
       - squashfuse
     update_cache: yes
+  become: yes
 - name: Install neovim SNAP
   snap:
-    name: neovim
+    name: nvim
     state: present
     classic: true
+  become: yes
 - name: Install AstroNvim and user configs
-  become: false
+  become: no
   block:
     - name: Create .config folder
       become: no

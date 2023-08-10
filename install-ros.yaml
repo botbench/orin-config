@@ -7,14 +7,16 @@
             dest: /etc/apt/trusted.gpg.d/ros.asc
         - name: Add ROS repo with reference to key
           ansible.builtin.apt_repository:
-            repo: "deb [signed-by=/etc/apt/trusted.gpg.d/ros.asc] http://packages.ros.org/ros/ubuntu {{ ansible_distribution_release }} main"
+            repo: "deb [signed-by=/etc/apt/trusted.gpg.d/ros.asc] http://packages.ros.org/ros2/ubuntu {{ ansible_distribution_release }} main"
             state: present
             filename: ros-latest.repo
         - name: Install ROS desktop FULL
           apt:
-            name: ros-noetic-desktop-full
+            name: ros-foxy-desktop
         - name: Install additional ROS packages
           ansible.builtin.apt:
-            pkg:
-              - ros-noetic-joy
+            name: "{{ packages }}"
+            state: latest
+          vars:
+            packages: "{{ lookup('file', 'files/ros-foxy-packages.txt').splitlines() }}"
   become: yes

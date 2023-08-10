@@ -5,12 +5,6 @@
   become: yes
 - name: Install tmux plugins and configs
   block:
-    #    - name: Create tmux .config folder
-    #  become: no
-    #  ansible.builtin.file:
-    #    path: "{{ ORIN_USER_HOME }}/.config/tmux"
-    #    state: directory
-    #    mode: '0750'
     - name: Copy tmux config file
       ansible.builtin.copy:
         src: files/tmux.conf
