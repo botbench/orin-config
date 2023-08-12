@@ -1,0 +1,16 @@
+[Desktop Entry]
+Type=Application
+Exec=/home/xander/.cargo/bin/alacritty
+Icon=alactritty-term
+Terminal=false
+Categories=System
+
+Name=Alacritty
+GenericName=Alacritty
+Comment=A fast, cross-platform, OpenGL terminal emulator
+StartupWMClass=Alacritty
+Actions=New;
+
+[Desktop Action New]
+Name=New Terminal
+Exec=alacritty

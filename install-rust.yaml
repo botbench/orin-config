@@ -21,3 +21,16 @@
   ansible.builtin.shell:
     cmd: ". {{ ORIN_USER_HOME }}/.cargo/env && cargo install zoxide"
     creates: "{{ ORIN_USER_HOME }}/.cargo/bin/zoxide"
+- name: Build and install alacritty
+  ansible.builtin.shell:
+    cmd: ". {{ ORIN_USER_HOME }}/.cargo/env && cargo install alacritty"
+    creates: "{{ ORIN_USER_HOME }}/.cargo/bin/alacritty"
+- name: Create application folder
+  ansible.builtin.file:
+    path: "{{ ORIN_USER_HOME }}/.local/share/applications"
+    state: directory
+    mode: '0750'
+- name: Copy alacritty desktop file
+  ansible.builtin.copy:
+    src: files/Alacritty.desktop
+    dest: "{{ ORIN_USER_HOME }}/.local/share/applications/"

@@ -18,3 +18,4 @@
     - import_tasks: install-nxmachine.yaml
     - import_tasks: install-lxde.yaml
     - import_tasks: install-vscode.yaml
+    - import_tasks: install-kitty.yaml

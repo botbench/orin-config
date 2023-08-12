@@ -1,0 +1,14 @@
+- name: Install kitty
+  ansible.builtin.apt:
+    pkg:
+      - kitty
+  become: yes
+- name: Create kitty config dir
+  ansible.builtin.file:
+    path: "{{ ORIN_USER_HOME }}/.config/kitty/"
+    state: directory
+    mode: '0750'
+- name: Copy alacritty desktop file
+  ansible.builtin.copy:
+    src: files/kitty.conf
+    dest: "{{ ORIN_USER_HOME }}/.config/kitty/"
