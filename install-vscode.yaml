@@ -1,0 +1,14 @@
+- block:
+    - name: Visual Studio Code - install GPG key
+      ansible.builtin.get_url:
+        url: https://packages.microsoft.com/keys/microsoft.asc
+        dest: /etc/apt/trusted.gpg.d/microsoft.asc
+    - name: Visual Studio Code - Install repository
+      ansible.builtin.apt_repository:
+        repo: "deb [signed-by=/etc/apt/trusted.gpg.d/microsoft.asc] https://packages.microsoft.com/repos/code stable main"
+        state: present
+        filename: vscode.repo
+    - name: Visual Studio Code - Install application
+      apt:
+        name: code
+  become: yes

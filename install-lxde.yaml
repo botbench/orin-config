@@ -1,0 +1,6 @@
+- name: Install lxde and lightdm
+  ansible.builtin.apt:
+    pkg:
+      - lightdm
+      - lxde
+  become: yes

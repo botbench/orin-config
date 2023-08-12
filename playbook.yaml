@@ -15,3 +15,6 @@
     - import_tasks: install-tmux.yaml
     - import_tasks: install-neovim.yaml
     - import_tasks: install-jtop.yaml
+    - import_tasks: install-nxmachine.yaml
+    - import_tasks: install-lxde.yaml
+    - import_tasks: install-vscode.yaml

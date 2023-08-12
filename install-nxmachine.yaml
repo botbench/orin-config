@@ -1,0 +1,4 @@
+- name: Install NoMachine
+  ansible.builtin.apt:
+    deb: https://download.nomachine.com/download/8.8/Arm/nomachine_8.8.1_1_arm64.deb
+  become: yes
