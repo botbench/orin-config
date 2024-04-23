@@ -1,0 +1,9 @@
+- name: Install additional dev packages
+  ansible.builtin.apt:
+    pkg:
+      - libserial-dev
+      - python3-serial
+      - cmake
+      - libfontconfig-dev
+      - fontconfig
+  become: yes

@@ -295,3 +295,6 @@ ros-foxy-visualization-msgs
 ros-foxy-xacro
 ros-foxy-yaml-cpp-vendor
 ros-foxy-zstd-vendor
+python3-colcon-ros
+python3-colcon-zsh
+python3-colcon-cmake

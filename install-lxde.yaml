@@ -4,3 +4,9 @@
       - lightdm
       - lxde
   become: yes
+- name: Remove gdm3
+  ansible.builtin.apt:
+    name: gdm3
+    state: absent
+    purge: true
+  become: yes

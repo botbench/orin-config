@@ -7,6 +7,7 @@
       ansible.builtin.apt:
         pkg:
           - git
+          - git-lfs
           - curl
           - wget
           - tmux
@@ -16,6 +17,8 @@
           - python3-selinux
           - selinux-utils
           - selinux-policy-default
+          - docker-buildx
+          - nvidia-container-runtime
     - name: Disable SELinux
       ansible.posix.selinux:
         state: disabled
